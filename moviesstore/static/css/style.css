@@ -55,9 +55,9 @@
 }
 
 .movie-restricted img.blur-image {
-  filter: blur(10px);
-  -webkit-filter: blur(10px);
-  transition: filter 0.3s ease;
+  filter: brightness(0);
+  -webkit-filter: brightness(0);
+  background-color: #000;
 }
 
 .movie-restricted .card {
