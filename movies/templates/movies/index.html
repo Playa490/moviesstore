@@ -25,14 +25,28 @@
       </div>
     </div>
     <div class="row">
-      {% for movie in template_data.movies %}
+      {% for item in template_data.movies %}
       <div class="col-md-4 col-lg-3 mb-2">
-        <div class="p-2 card align-items-center pt-4">
-          <img src="{{ movie.image.url }}" class="card-img-top rounded img-card-200">
+        <div class="p-2 card align-items-center pt-4 {% if item.is_restricted %}movie-restricted{% endif %}">
+          <div class="position-relative">
+            <img src="{{ item.movie.image.url }}" class="card-img-top rounded img-card-200 {% if item.is_restricted %}blur-image{% endif %}">
+            {% if item.is_restricted %}
+            <div class="rating-overlay">
+              <i class="fas fa-lock"></i>
+              <p class="mb-0">Rating: {{ item.movie.rating }}</p>
+            </div>
+            {% endif %}
+          </div>
           <div class="card-body text-center">
-            <a href="{% url 'movies.show' id=movie.id %}" class="btn bg-dark text-white">
-              {{ movie.name }}
+            {% if item.is_restricted %}
+            <button class="btn bg-dark text-white" disabled title="This movie exceeds your content rating preference">
+              {{ item.movie.name }}
+            </button>
+            {% else %}
+            <a href="{% url 'movies.show' id=item.movie.id %}" class="btn bg-dark text-white">
+              {{ item.movie.name }}
             </a>
+            {% endif %}
           </div>
         </div>
       </div>

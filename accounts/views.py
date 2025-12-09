@@ -4,6 +4,7 @@ from .forms import CustomUserCreationForm, CustomErrorList
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .models import UserProfile
 
 @login_required
 def logout(request):
@@ -46,3 +47,27 @@ def orders(request):
     template_data['title'] = 'Orders'
     template_data['orders'] = request.user.order_set.all()
     return render(request, 'accounts/orders.html', {'template_data': template_data})
+
+@login_required
+def profile_settings(request):
+    template_data = {}
+    template_data['title'] = 'Profile Settings'
+    
+    # Get or create user profile
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
+    
+    if request.method == 'POST':
+        max_rating = request.POST.get('max_content_rating')
+        if max_rating in ['G', 'PG', 'PG-13', 'R']:
+            profile.max_content_rating = max_rating
+            profile.save()
+            template_data['success'] = 'Content rating preference updated successfully!'
+    
+    template_data['profile'] = profile
+    template_data['rating_choices'] = [
+        ('G', 'G'),
+        ('PG', 'PG'),
+        ('PG-13', 'PG-13'),
+        ('R', 'R'),
+    ]
+    return render(request, 'accounts/profile_settings.html', {'template_data': template_data})

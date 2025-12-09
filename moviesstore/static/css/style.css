@@ -48,3 +48,41 @@
   width: fit-content;
   max-height: 400px;
 }
+
+/* Content Rating Filter Styles */
+.movie-restricted {
+  opacity: 0.7;
+  position: relative;
+}
+
+.blur-image {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+.rating-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+
+.rating-overlay i {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.rating-overlay p {
+  font-size: 0.9rem;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

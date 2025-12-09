@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-3">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-6 mx-auto mb-3">
+        <h2>Profile Settings</h2>
+        <hr />
+        {% if template_data.success %}
+        <div class="alert alert-success" role="alert">
+          {{ template_data.success }}
+        </div>
+        {% endif %}
+        <div class="card">
+          <div class="card-body">
+            <form method="POST">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="max_content_rating" class="form-label">
+                  <strong>Max Content Rating</strong>
+                </label>
+                <p class="text-muted small">
+                  Select the maximum content rating you want to see. Movies with ratings higher than your selection will be blurred out on the movie listing page.
+                </p>
+                <select class="form-select" id="max_content_rating" name="max_content_rating" required>
+                  {% for value, label in template_data.rating_choices %}
+                  <option value="{{ value }}" {% if template_data.profile.max_content_rating == value %}selected{% endif %}>
+                    {{ label }}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <button type="submit" class="btn bg-dark text-white">Save Settings</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
