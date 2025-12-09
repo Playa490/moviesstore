@@ -31,6 +31,7 @@
           <div class="position-relative">
             <img src="{{ item.movie.image.url }}" class="card-img-top rounded img-card-200 {% if item.is_restricted %}blur-image{% endif %}">
             {% if item.is_restricted %}
+            <div class="black-overlay"></div>
             <div class="rating-overlay">
               <i class="fas fa-lock"></i>
               <p class="mb-0">Rating: {{ item.movie.rating }}</p>
