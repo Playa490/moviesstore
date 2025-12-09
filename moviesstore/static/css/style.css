@@ -54,10 +54,10 @@
   position: relative;
 }
 
-.movie-restricted img.blur-image {
-  filter: brightness(0);
-  -webkit-filter: brightness(0);
-  background-color: #000;
+.blur-image {
+  filter: brightness(0) !important;
+  -webkit-filter: brightness(0) !important;
+  background-color: #000 !important;
 }
 
 .movie-restricted .card {
