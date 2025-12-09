@@ -51,13 +51,13 @@
 
 /* Content Rating Filter Styles */
 .movie-restricted {
-  opacity: 0.7;
   position: relative;
 }
 
-.blur-image {
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
+.movie-restricted img.blur-image {
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
+  transition: filter 0.3s ease;
 }
 
 .movie-restricted .card {
