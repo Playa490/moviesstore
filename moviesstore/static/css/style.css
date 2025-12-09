@@ -56,8 +56,13 @@
 }
 
 .blur-image {
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
+  filter: blur(8px) grayscale(100%);
+  -webkit-filter: blur(8px) grayscale(100%);
+  opacity: 0.6;
+}
+
+.movie-restricted .card {
+  background-color: #f5f5f5;
 }
 
 .rating-overlay {
